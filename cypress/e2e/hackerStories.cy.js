@@ -1,3 +1,5 @@
+const Fake = require('faker-br/lib/fake')
+
 describe('Hacker Stories', () => {
   const initialTerm = 'React'
   const newTerm = 'Cypress'
@@ -273,8 +275,8 @@ describe('Hacker Stories', () => {
       })
 
       context('Last searches', () => {
-        it('shows a max of 5 buttons for the last searched terms', () => {
-          const faker = require('@faker-js/faker')
+        it.only('shows a max of 5 buttons for the last searched terms', () => {
+          const faker = require('faker')
 
           cy.intercept(
             'GET',
@@ -284,6 +286,7 @@ describe('Hacker Stories', () => {
 
           Cypress._.times(6, () => {
             const randomWord = faker.random.word()
+          
 
             cy.get('#search')
               .clear()
