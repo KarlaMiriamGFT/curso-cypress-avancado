@@ -274,7 +274,7 @@ describe('Hacker Stories', () => {
 
       context('Last searches', () => {
         it('shows a max of 5 buttons for the last searched terms', () => {
-          const faker = require('faker')
+          const faker = require('@faker-js/faker')
 
           cy.intercept(
             'GET',
@@ -283,7 +283,7 @@ describe('Hacker Stories', () => {
           ).as('getRandomStories')
 
           Cypress._.times(6, () => {
-            const randomWord = faker.random.word(5)
+            const randomWord = faker.random.word()
 
             cy.get('#search')
               .clear()

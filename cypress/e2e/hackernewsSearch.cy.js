@@ -16,8 +16,8 @@ describe('Hacker News Search', () => {
     })
   
     it('correctly caches the results', () => {
-      const faker = require('@faker-js/faker')
-      const randomWord = Faker.random.word()
+      const Faker = require('@faker-js/faker')
+      const randomWord = 'Teste'
       let count = 0
   
       cy.intercept(`**/search?query=${randomWord}**`, req => {
