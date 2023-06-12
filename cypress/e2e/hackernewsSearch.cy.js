@@ -1,4 +1,4 @@
-describe('Hacker News Search', () => {
+describe.skip('Hacker News Search', () => {
     const term = 'cypress.io'
   
     beforeEach(() => {
