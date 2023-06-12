@@ -32,7 +32,6 @@ describe('Hacker Stories', () => {
       cy.contains('More')
         .should('be.visible')
         .click()
-
       cy.wait('@getNextStories')
 
       cy.get('.item').should('have.length', 40)
@@ -99,7 +98,7 @@ describe('Hacker Stories', () => {
           cy.get('.item')
             .first()
             .should('be.visible')
-            .and('contain', stories.hits[0].title)
+            .should('contain', stories.hits[0].title)
             .and('contain', stories.hits[0].author)
             .and('contain', stories.hits[0].num_comments)
             .and('contain', stories.hits[0].points)
@@ -109,7 +108,7 @@ describe('Hacker Stories', () => {
           cy.get('.item')
             .last()
             .should('be.visible')
-            .and('contain', stories.hits[1].title)
+            .should('contain', stories.hits[1].title)
             .and('contain', stories.hits[1].author)
             .and('contain', stories.hits[1].num_comments)
             .and('contain', stories.hits[1].points)
@@ -117,7 +116,7 @@ describe('Hacker Stories', () => {
             .should('have.attr', 'href', stories.hits[1].url)
         })
 
-        it('shows one story less after dimissing the first one', () => {
+        it('shows one less story after dimissing the first one', () => {
           cy.get('.button-small')
             .first()
             .should('be.visible')
@@ -242,6 +241,7 @@ describe('Hacker Stories', () => {
 
       it('types and hits ENTER', () => {
         cy.get('#search')
+          .should('be.visible')
           .type(`${newTerm}{enter}`)
 
         cy.wait('@getStories')
@@ -256,8 +256,10 @@ describe('Hacker Stories', () => {
 
       it('types and clicks the submit button', () => {
         cy.get('#search')
+          .should('be.visible')
           .type(newTerm)
         cy.contains('Submit')
+          .should('be.visible')
           .click()
 
         cy.wait('@getStories')
@@ -281,7 +283,7 @@ describe('Hacker Stories', () => {
           ).as('getRandomStories')
 
           Cypress._.times(6, () => {
-            const randomWord = faker.random.word()
+            const randomWord = faker.random.word(5)
 
             cy.get('#search')
               .clear()
